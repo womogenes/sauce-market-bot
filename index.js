@@ -7,15 +7,19 @@ const [writePrices] = require('./spreadsheet.js');
 // From https://stackoverflow.com/questions/19847412/how-to-call-a-function-every-hour
 var nextDate = new Date();
 const doSM = () => {
-  client.channels.get('860011138062483460').send('.sm');
+  try {
+    client.channels.get('860011138062483460').send('.sm');
 
-  nextDate.setHours(nextDate.getHours() + 1);
-  nextDate.setMinutes(5);
-  nextDate.setSeconds(0);
+    nextDate.setHours(nextDate.getHours() + 1);
+    nextDate.setMinutes(5);
+    nextDate.setSeconds(0);
 
-  var difference = nextDate - new Date();
-  console.log(`Next update scheduled for ${nextDate.toLocaleString()}`);
-  setTimeout(doSM, difference);
+    var difference = nextDate - new Date();
+    console.log(`Next update scheduled for ${nextDate.toLocaleString()}`);
+    setTimeout(doSM, difference);
+  } catch {
+    setTimeout(doSM, 1 * 60 * 1000);
+  }
 };
 
 client.on('ready', () => {
