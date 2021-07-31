@@ -10,8 +10,8 @@ const doSM = () => {
   client.channels.get('860011138062483460').send('.sm');
 
   nextDate.setHours(nextDate.getHours() + 1);
-  nextDate.setMinutes(0);
-  nextDate.setSeconds(30);
+  nextDate.setMinutes(5);
+  nextDate.setSeconds(0);
 
   var difference = nextDate - new Date();
   console.log(`Next update scheduled for ${nextDate.toLocaleString()}`);
